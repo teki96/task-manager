@@ -32,16 +32,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
+          cache: npm
+          cache-dependency-path: server/package-lock.json
 
       - name: Install dependencies
         run: npm ci
+        working-directory: server
 
       - name: Run tests
+        working-directory: server
         env:
           NODE_ENV: test
           TEST_MONGODB_URI: mongodb://localhost:27017/task-manager-test
           MONGODB_URI: mongodb://localhost:27017/task-manager
-          SECRET: ${{ secrets.JWT_SECRET || 'test-secret' }}
+          SECRET: test-secret
           PORT: 3001
         run: npm test
