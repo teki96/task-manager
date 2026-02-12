@@ -10,7 +10,13 @@ const User = require('../models/user')
 
 describe('User API', () => {
   beforeEach(async () => {
-    await User.deleteMany({})
+    // Only delete users that look like user test users, not task/login test users
+    await User.deleteMany({
+      $and: [
+        { username: { $ne: 'logintestuser' } },
+        { username: { $not: /^testuser_/ } },
+      ],
+    })
   })
 
   describe('creating a new user', () => {

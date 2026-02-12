@@ -10,7 +10,8 @@ const User = require('../models/user')
 
 describe('Login API', () => {
   beforeEach(async () => {
-    await User.deleteMany({})
+    // Only delete login test users, not task test users
+    await User.deleteMany({ username: 'logintestuser' })
 
     // Create a test user
     const passwordHash = bcrypt.hashSync('correctpassword', 10)
