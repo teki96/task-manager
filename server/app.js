@@ -1,7 +1,9 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const app = express()
 const usersRouter = require('./controllers/users')
+const tasksRouter = require('./controllers/tasks')
 const loginRouter = require('./controllers/login')
 const middleware = require('./utils/middleware')
 const config = require('./utils/config')
@@ -29,6 +31,7 @@ app.use(middleware.tokenExtractor)
 
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
+app.use('/api/tasks', tasksRouter)
 
 if (process.env.NODE_ENV === 'test') {
   const testingRouter = require('./controllers/test')
