@@ -1,0 +1,8 @@
+{
+  "style": "default",
+  "rsc": false,
+  "tsx": true,
+  "importAlias": "@",
+  "baseColor": "zinc",
+  "css": "src/index.css"
+}
