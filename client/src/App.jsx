@@ -9,12 +9,14 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
+import { Navigation } from './components/Navigation'
 
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
+          <Navigation />
           <Routes>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
