@@ -10,27 +10,30 @@ import { RegisterPage } from './pages/RegisterPage'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
 import { Navigation } from './components/Navigation'
+import { TaskProvider } from '../../client_files/client/src/context/TaskContext'
 
 function App() {
   return (
     <>
       <Router>
         <AuthProvider>
-          <Navigation />
-          <Routes>
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <DashboardPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
-          </Routes>
+          <TaskProvider>
+            <Navigation />
+            <Routes>
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <DashboardPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
+          </TaskProvider>
         </AuthProvider>
       </Router>
     </>
