@@ -10,7 +10,7 @@ import { RegisterPage } from './pages/RegisterPage'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { DashboardPage } from './pages/DashboardPage'
 import { Navigation } from './components/Navigation'
-import { TaskProvider } from '../../client_files/client/src/context/TaskContext'
+import { TaskProvider } from './context/TaskContext'
 
 function App() {
   return (
