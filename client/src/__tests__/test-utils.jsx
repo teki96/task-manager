@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from '../context/AuthContext'
 import { TaskProvider } from '../context/TaskContext'
@@ -27,5 +28,7 @@ export function renderWithProviders(
 export function renderWithRouter(ui, renderOptions = {}) {
   return renderWithProviders(ui, { withRouter: true, ...renderOptions })
 }
+
+export { userEvent }
 
 export * from '@testing-library/react'
