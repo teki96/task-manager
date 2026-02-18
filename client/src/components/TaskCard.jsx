@@ -1,6 +1,7 @@
 import { Button } from './ui/button'
 import { Badge } from './ui/badge'
 import { Select } from './ui/select'
+import { Calendar, FileText, Edit, Trash2 } from 'lucide-react'
 
 const getPriorityColor = (priority) => {
   switch (priority) {
@@ -34,19 +35,26 @@ export const TaskCard = ({
   onStatusChange,
 }) => {
   return (
-    <div className="rounded-lg border border-gray-200 bg-white p-5 hover:shadow-md transition-shadow">
-      <div className="mb-3 flex items-start justify-between gap-4">
-        <h3 className="flex-1 text-lg font-semibold text-gray-900">
-          {task.title}
-        </h3>
-        <div className="flex items-center gap-2">
+    <div className="rounded-lg border border-gray-200 bg-white p-4 hover:shadow-lg transition-shadow">
+      <div className="mb-3 flex items-start justify-between gap-3">
+        <div className="flex-1">
+          <h3 className="text-base font-semibold text-gray-900 mb-1">
+            {task.title}
+          </h3>
+          {task.description && (
+            <p className="text-sm text-gray-600 line-clamp-2">
+              {task.description}
+            </p>
+          )}
+        </div>
+        <div className="flex items-center gap-2 flex-shrink-0">
           <Badge className={getPriorityColor(task.priority)}>
             {task.priority}
           </Badge>
           <Select
             value={task.status}
             onChange={(e) => onStatusChange(task.id, e.target.value)}
-            className="h-8 border-0 bg-gray-100 text-sm p-1"
+            className="h-7 border-0 bg-gray-100 text-xs p-1 w-24"
           >
             <option value="todo">To Do</option>
             <option value="in-progress">In Progress</option>
@@ -55,38 +63,38 @@ export const TaskCard = ({
         </div>
       </div>
 
-      {task.description && (
-        <p className="mb-3 text-gray-700">{task.description}</p>
-      )}
-
-      <div className="mb-4 flex flex-wrap gap-3 text-sm text-gray-500">
+      <div className="mb-3 flex flex-wrap gap-3 text-xs text-gray-500">
         {task.deadline && (
           <span className="flex items-center gap-1">
-            📅 {formatDate(task.deadline)}
+            <Calendar className="w-3.5 h-3.5" />
+            {formatDate(task.deadline)}
           </span>
         )}
         {task.createdAt && (
           <span className="flex items-center gap-1">
-            📝 Created {formatDate(task.createdAt)}
+            <FileText className="w-3.5 h-3.5" />
+            {formatDate(task.createdAt)}
           </span>
         )}
       </div>
 
       <div className="flex gap-2">
-        <Button
+        <button
           onClick={() => onEdit(task)}
           disabled={isLoading || isEditing}
-          className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 h-8 text-sm flex items-center justify-center"
+          className="p-1.5 text-blue-600 hover:bg-blue-50 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          title="Edit task"
         >
-          ✏️ Edit
-        </Button>
-        <Button
+          <Edit className="w-4 h-4" />
+        </button>
+        <button
           onClick={() => onDelete(task.id)}
           disabled={isLoading || isEditing}
-          className="flex-1 bg-red-600 hover:bg-red-700 disabled:opacity-50 h-8 text-sm flex items-center justify-center"
+          className="p-1.5 text-red-600 hover:bg-red-50 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          title="Delete task"
         >
-          🗑️ Delete
-        </Button>
+          <Trash2 className="w-4 h-4" />
+        </button>
       </div>
     </div>
   )

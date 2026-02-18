@@ -1,4 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
+import { X, ClipboardList, Plus } from 'lucide-react'
 import { AuthContext } from '../context/AuthContext'
 import { TaskContext } from '../context/TaskContext'
 import { Button } from '../components/ui/button'
@@ -126,19 +127,32 @@ export const DashboardPage = () => {
               className="text-red-600 hover:text-red-700"
               onClick={clearError}
             >
-              ✕
+              <X className="w-5 h-5" />
             </button>
           </div>
         )}
         <TaskStats stats={stats} />
         <Card>
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle>📋 My Tasks</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <ClipboardList className="w-5 h-5" />
+              My Tasks
+            </CardTitle>
             <Button
               onClick={() => setShowForm(!showForm)}
-              className="bg-blue-600 hover:bg-blue-700 w-32 h-8 text-sm flex items-center justify-center"
+              className="bg-slate-800 hover:bg-slate-900 h-8 text-sm flex items-center justify-center text-white"
             >
-              {showForm ? '✕ Cancel' : 'Add Task'}
+              {showForm ? (
+                <>
+                  <X className="w-4 h-4" />
+                  Cancel
+                </>
+              ) : (
+                <>
+                  <Plus className="w-4 h-4 mr-1" />
+                  Add Task
+                </>
+              )}
             </Button>
           </CardHeader>
           <CardContent className="space-y-6">

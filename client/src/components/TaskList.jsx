@@ -32,12 +32,12 @@ export const TaskList = ({
         <div className="py-12 text-center">
           <p className="text-gray-600">
             {filterStatus === 'all'
-              ? 'No tasks yet. Create one to get started! 🚀'
+              ? 'No tasks yet. Create one to get started!'
               : `No ${filterStatus} tasks.`}
           </p>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredTasks.map((task) => (
             <TaskCard
               key={task.id}

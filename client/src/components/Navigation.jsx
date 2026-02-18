@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { ClipboardList } from 'lucide-react'
 import { AuthContext } from '../context/AuthContext'
 import { Button } from './ui/button'
 
@@ -24,7 +25,7 @@ export const Navigation = () => {
             to="/dashboard"
             className="flex items-center gap-2 text-xl font-bold text-gray-900"
           >
-            <span className="text-2xl">📋</span>
+            <ClipboardList className="w-6 h-6" />
             Task Manager
           </Link>
 
