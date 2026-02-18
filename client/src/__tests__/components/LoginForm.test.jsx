@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { renderWithRouter, screen, userEvent } from './test-utils'
-import { LoginForm } from '../components/LoginForm'
-import { AuthContext } from '../context/AuthContext'
+import { renderWithRouter, screen, userEvent } from '../test-utils'
+import { LoginForm } from '../../components/LoginForm'
+import { AuthContext } from '../../context/AuthContext'
 
 // Mock useNavigate
 const mockNavigate = vi.fn()
